@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/dashboard"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Search Posts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" placeholder="Cari Title Laporan" debounce="500"
+    (ionInput)="loadUserPosts()"></ion-searchbar>
+
+  <ion-list>
+    <ion-card *ngFor=" let post of filteredPosts">
+      <ion-card-header>
+        <ion-item lines="none">
+          <ion-label>
+            <h2 routerLink="/detailpost/{{post.report_id}}">{{ post.title }}</h2>
+          </ion-label>
+        </ion-item>
+      </ion-card-header>
+    </ion-card>
+  </ion-list>
+</ion-content>

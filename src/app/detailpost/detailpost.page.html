@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detail Laporan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="post">
+    <ion-card-header>
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img [src]="post.user_profile_photo" alt="Post Avatar">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ post.username }}</h2>
+          <h3>Untuk {{ post.target_institution }}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="post-image-container">
+        <img [src]="post.image" alt="Post Image">
+      </div>
+
+      <div class="button-container">
+        <ion-button shape="round" color="primary" size="small" (click)="likePost(post.report_id)">
+          <ion-icon name="thumbs-up"></ion-icon>
+          {{ post.total_likes }}
+        </ion-button>
+
+        <ion-button shape="round" color="primary" size="small" (click)="dislikePost(post.report_id)">
+          <ion-icon name="thumbs-down"></ion-icon>
+          {{ post.total_dislikes }}
+        </ion-button>
+      </div>
+
+      <h3>Dibuat Tanggal {{ post.report_date | date:'dd MMMM yyyy HH:mm' }}</h3>
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.description }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-title>Komentar</ion-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let comment of comments">
+          {{ comment.username }}: {{ comment.comment_text }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item>
+      <ion-textarea [(ngModel)]="newComment" placeholder="Ketik komentar Anda"></ion-textarea>
+    </ion-item>
+    <ion-button expand="block" (click)="postComment()">Kirim Komentar</ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,51 @@
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Register</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong>Mata Warga</strong>
+    <br>
+    <ion-list>
+      <ion-item>
+        <ion-input labelPlacement="floating" [(ngModel)]="username" type="text" label="Username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="floating" [(ngModel)]="fullname" label="Full Name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="floating" [(ngModel)]="password" type="password" label="Password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-radio-group [(ngModel)]="photoMethod">
+          <ion-list-header>
+            <ion-label>Photo Method</ion-label>
+          </ion-list-header>
+          <ion-item>
+            <ion-label>Upload Photo</ion-label>
+            <ion-radio slot="start" value="upload"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Use Camera</ion-label>
+            <ion-radio slot="start" value="camera"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-item>
+      <ion-item *ngIf="photoMethod === 'upload'">
+        <input type="file" (change)="onFileSelected($event)">
+      </ion-item>
+      <ion-item *ngIf="photoMethod === 'camera'">
+        <ion-button (click)="takePhoto()">Take Photo</ion-button>
+        <img *ngIf="photoURL" [src]="photoURL" />
+      </ion-item>
+    </ion-list>
+    <br>
+    <div class="ion-text-center">
+      <ion-button (click)="register()">Register</ion-button>
+    </div>
+    <br>
+    <p>Sudah punya akun? <a routerLink="/login">Login</a></p>
+  </div>
+</ion-content>

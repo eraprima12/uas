@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../users.service';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  username = ''
+  password = ''
 
-  constructor() {}
-
+  constructor(private usersService: UsersService, private router: Router, private toastController: ToastController) { }
+  ngOnInit(): void {
+    this.router.navigate(['/login']);
+  }
 }

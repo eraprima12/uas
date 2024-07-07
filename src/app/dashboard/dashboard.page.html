@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let post of userPosts">
+      <ion-card-header>
+        <ion-item lines="none">
+          <ion-avatar slot="start">
+            <img [src]="post.user_profile_photo" alt="User Avatar">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ post.user_fullname }}</h2>
+            <h3>Untuk {{ post.target_institution }}</h3>
+            <h2 routerLink="/detailpost/{{post.report_id}}">{{ post.title }}</h2>
+          </ion-label>
+        </ion-item>
+      </ion-card-header>
+
+      <ion-img [src]="post.image" *ngIf="post.image" class="post-image"></ion-img>
+
+      <ion-card-content>
+        <div style="background-color: white; padding: 15px;">
+          <h3>Dibuat Tanggal {{ post.report_date | date:'dd MMMM yyyy HH:mm' }}</h3>
+          <p>{{ post.description }}</p>
+        </div>
+
+        <div class="button-container">
+          <ion-button shape="round" color="primary" size="small" (click)="likePost(post.report_id)">
+            <ion-icon name="thumbs-up"></ion-icon>
+            {{ post.total_likes }}
+          </ion-button>
+
+          <ion-button shape="round" color="primary" size="small" (click)="dislikePost(post.report_id)">
+            <ion-icon name="thumbs-down"></ion-icon>
+            {{ post.total_dislikes }}
+          </ion-button>
+
+          <ion-button shape="round" color="primary" size="small" routerLink="/detailpost/{{post.report_id}}">
+            <ion-icon name="chatbubbles"></ion-icon>
+
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/report">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

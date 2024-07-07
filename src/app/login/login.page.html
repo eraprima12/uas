@@ -1,0 +1,26 @@
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">LOGIN</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong>Mata Warga</strong>
+    <br>
+    <ion-list>
+      <ion-item>
+        <ion-input labelPlacement="floating" [(ngModel)]="username" type="text" label="Username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="floating" [(ngModel)]="password" type="password" label="Password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <br>
+    <div class="ion-text-center">
+      <ion-button (click)="login()">L O G I N</ion-button>
+    </div>
+    <br>
+    <p>Belum punya akun? <a routerLink="/register">Register</a></p>
+  </div>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Buat Laporan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Judul</ion-label>
+    <ion-input [(ngModel)]="report.title" name="title" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Deskripsi</ion-label>
+    <ion-textarea [(ngModel)]="report.description" name="description"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Instansi Tujuan</ion-label>
+    <ion-select [(ngModel)]="report.target_institution" name="target_institution">
+      <ion-select-option value="Pemkot">Pemkot</ion-select-option>
+      <ion-select-option value="PLN">PLN</ion-select-option>
+      <ion-select-option value="PDAM">PDAM</ion-select-option>
+      <ion-select-option value="Polisi">Polisi</ion-select-option>
+      <ion-select-option value="Tidak tahu">Tidak tahu</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Upload Gambar</ion-label>
+    <ion-button (click)="selectImageSource()">Pilih Gambar</ion-button>
+  </ion-item>
+  <ion-img [src]="selectedImage" *ngIf="selectedImage"></ion-img>
+
+  <ion-button expand="full" (click)="submitReport()">Kirim Laporan</ion-button>
+  <ion-button expand="full" color="light" (click)="saveDraft()">Simpan Draft</ion-button>
+</ion-content>
